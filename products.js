@@ -1,0 +1,41 @@
+/* Menú visual de Caribe. Los precios deben cargarse desde la lista vigente antes de publicar. */
+window.CARIBE_PRODUCTS = [
+  {name:'Almendrado',image:'almendrado.jpg',group:'helados',tag:'Clásico'},
+  {name:'Banana split',image:'banana%20split.jpg',group:'helados'},
+  {name:'Chocolate',image:'chocolate.jpg',group:'helados',tag:'Clásico'},
+  {name:'Chocolate Bariloche',image:'chocolate%20bariloche.jpg',group:'helados'},
+  {name:'Crema americana',image:'crema%20americana.jpg',group:'helados'},
+  {name:'Crema del cielo',image:'crema%20del%20cielo.jpg',group:'helados'},
+  {name:'Crema Oreo',image:'crema%20oreo.jpg',group:'helados'},
+  {name:'Dulce de leche',image:'dulce%20de%20leche.jpg',group:'helados',tag:'Favorito'},
+  {name:'Dulce de leche granizado',image:'dulce%20de%20leche%20granizado.jpg',group:'helados'},
+  {name:'Flan con dulce de leche',image:'flan%20con%20dulce%20de%20leche.jpg',group:'helados'},
+  {name:'Frutilla a la crema',image:'frutilla%20a%20la%20%20crema.jpg',group:'helados',tag:'Favorito'},
+  {name:'Frutilla al agua',image:'frutilla%20al%20agua.jpg',group:'helados'},
+  {name:'Frutos rojos',image:'frutos%20rojos.jpg',group:'helados'},
+  {name:'Granizado',image:'granizado.jpg',group:'helados'},
+  {name:'Higos al coñac',image:'higos%20al%20co%C3%B1ac.jpg',group:'helados'},
+  {name:'Limón al agua',image:'limon%20al%20agua.jpg',group:'helados'},
+  {name:'Maracuyá al agua',image:'maracuya%20al%20agua.jpg',group:'helados'},
+  {name:'Menta granizada',image:'menta%20granizada.jpg',group:'helados'},
+  {name:'Pistacho',image:'pistacho.jpg',group:'helados'},
+  {name:'Quinotos al whisky',image:'quinotos%20al%20whisky.jpg',group:'helados'},
+  {name:'Sambayón',image:'sambayon.jpg',group:'helados'},
+  {name:'Tramontana',image:'tramontana.jpg',group:'helados',tag:'Favorito'},
+  {name:'Vainilla',image:'vainilla.jpg',group:'helados'},
+  {name:'Cucuruchos dulces',image:'cucuruchos%20dulces.jpg',group:'tentaciones',orderType:'addon'},
+  {name:'Cucuruchos de pasta',image:'cucuruchos%20de%20pasta.jpg',group:'tentaciones',orderType:'addon'},
+  {name:'Tacita de pasta',image:'tacita%20de%20pasta.jpg',group:'tentaciones',orderType:'addon'},
+  {name:'Palitos de agua',image:'palitos%20de%20agua.jpg',group:'tentaciones',orderType:'standalone',presentations:[{value:'unidad',label:'Unidad'},{value:'bolsa',label:'Bolsa (40 unidades)'}]},
+  {name:'Palitos de crema',image:'palitos%20de%20crema.jpg',group:'tentaciones',orderType:'standalone',presentations:[{value:'unidad',label:'Unidad'},{value:'bolsa',label:'Bolsa (20 unidades)'}]},
+  {name:'Palito bombón',image:'palito%20bombon.jpg',group:'tentaciones',orderType:'standalone',presentations:[{value:'unidad',label:'Unidad'},{value:'bolsa',label:'Bolsa (20 unidades)'}]},
+  {name:'Chipa',image:'chipas.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad'},{value:'media-docena',label:'½ docena (6 unidades)'},{value:'docena',label:'Docena (12 unidades)'}]},
+  {name:'Medialunas',image:'medialunas.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad'},{value:'media-docena',label:'½ docena (6 unidades)'},{value:'docena',label:'Docena (12 unidades)'}]},
+  {name:'Rosquitas',image:'rosquitas.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad'},{value:'media-docena',label:'½ docena (6 unidades)'},{value:'docena',label:'Docena (12 unidades)'}]},
+  {name:'Sándwich panini',image:'sandwich%20panini.jpg',group:'comestibles'},
+  {name:'Tostado de jamón y queso',image:'tostados%20de%20jamon%20y%20queso.jpg',group:'comestibles'},
+  {name:'Churros con dulce de leche',image:'churros%20con%20dulce%20de%20leche.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad'},{value:'media-docena',label:'½ docena (6 unidades)'},{value:'docena',label:'Docena (12 unidades)'}]}
+];
+
+window.CARIBE_SAUCES = ['Frutilla','Chocolate','Dulce de leche','Caramelo','Blue berry'];
+
