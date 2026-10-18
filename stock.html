@@ -1,18 +1,55 @@
 <!doctype html>
 <html lang="es-AR">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow">
-  <title>Disponibilidad | Caribe</title><link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Disponibilidad | Caribe</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body class="stock-page">
-  <header class="site-header"><a class="brand" href="index.html"><img src="assets/logo-caribe.png" alt="Caribe Heladería Artesanal"><span class="brand-caption">CONTROL DE DISPONIBILIDAD</span></a><a class="nav-cta" href="index.html">Volver al sitio ↗</a></header>
+  <header class="site-header">
+    <a class="brand" href="index.html"><img src="assets/logo-caribe.png" alt="Caribe Heladería Artesanal"><span class="brand-caption">CONTROL DE DISPONIBILIDAD</span></a>
+    <a class="nav-cta" href="index.html">Volver al sitio ↗</a>
+  </header>
   <main class="stock-admin section-wrap">
-    <p class="eyebrow"><span></span> HERRAMIENTA PARA EL LOCAL</p><h1>Disponibilidad <em>de productos.</em></h1>
-    <div class="local-notice"><strong>Guardado en este dispositivo</strong><p>Los cambios se recuerdan en este navegador y se reflejan en la página abierta aquí. No se comparten con otros teléfonos o computadoras.</p></div>
-    <div class="stock-toolbar"><p>Desmarcá un producto cuando se termine. Al volver a tenerlo, marcá “Disponible”.</p><button id="reset-stock" class="button button-primary" type="button">Marcar todo disponible</button></div>
-    <section id="stock-groups" class="stock-groups" aria-live="polite"></section>
+    <p class="eyebrow"><span></span> HERRAMIENTA PARA EL LOCAL</p>
+    <h1>Disponibilidad <em>de productos.</em></h1>
+    <div class="local-notice" id="stock-notice" role="status">
+      <strong>Conectando con el inventario…</strong>
+      <p>Esperá un momento mientras se consulta la disponibilidad.</p>
+    </div>
+
+    <section id="stock-login" class="stock-login" hidden>
+      <h2>Acceso del local</h2>
+      <p>Iniciá sesión con la cuenta autorizada para actualizar el stock.</p>
+      <form id="stock-login-form">
+        <label for="stock-email">Correo electrónico</label>
+        <input id="stock-email" name="email" type="email" autocomplete="username" required>
+        <label for="stock-password">Contraseña</label>
+        <input id="stock-password" name="password" type="password" autocomplete="current-password" required>
+        <button id="stock-login-button" class="button button-primary" type="submit">Iniciar sesión</button>
+      </form>
+      <p id="stock-login-message" class="stock-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="stock-panel" hidden>
+      <div class="stock-toolbar">
+        <p id="stock-mode-copy">Desmarcá un producto cuando se termine. Al volver a tenerlo, marcá “Disponible”.</p>
+        <div class="stock-actions">
+          <button id="reset-stock" class="button button-primary" type="button">Marcar todo disponible</button>
+          <button id="stock-logout" class="button button-secondary" type="button" hidden>Cerrar sesión</button>
+        </div>
+      </div>
+      <p id="stock-action-message" class="stock-message" role="status" aria-live="polite"></p>
+      <section id="stock-groups" class="stock-groups" aria-live="polite"></section>
+    </section>
   </main>
-  <footer class="site-footer"><p>Caribe Heladería Artesanal · Monte Caseros, Corrientes</p><small>El control actual guarda los cambios solo en este dispositivo.</small></footer>
-  <script src="products.js"></script><script src="stock.js"></script><script src="stock-management.js"></script>
+  <footer class="site-footer"><p>Caribe Heladería Artesanal · Monte Caseros, Corrientes</p><small>Los cambios de stock se guardan de forma compartida cuando iniciás sesión.</small></footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="products.js"></script>
+  <script src="stock.js"></script>
+  <script src="stock-management.js"></script>
 </body>
 </html>

@@ -7,3 +7,16 @@
 @media(max-width:650px){.stock-admin{padding-top:28px}.stock-toolbar{align-items:flex-start;flex-direction:column}.stock-groups{grid-template-columns:1fr}.stock-list{grid-template-columns:1fr}.stock-row{font-size:11px}}
 .flavor-picker{flex-wrap:wrap}.flavor-picker select:first-child{flex:1 1 155px;min-width:130px;width:auto}.flavor-picker .presentation-picker{flex:0 1 195px;min-width:135px;width:auto}.flavor-picker .add-button{min-height:40px}.flavor-picker select:disabled{background:#f4f0e9;color:#8b8176}
 @media(max-width:650px){.flavor-picker .presentation-picker{flex:1 1 140px;min-width:130px}}
+.inventory-status{margin:15px 0;padding:13px 16px;border-radius:12px;background:#fff1dd;color:#79382c;font-size:13px}
+.stock-login{max-width:520px;margin:26px 0;padding:24px;background:#fffdf8;border:1px solid var(--line);border-radius:16px}
+.stock-login h2{font:700 24px var(--serif);color:var(--wine);margin:0 0 6px}
+.stock-login p{font-size:13px;color:#536b65}
+.stock-login form{display:grid;gap:9px;margin-top:18px}
+.stock-login label{font-size:12px;font-weight:700;color:var(--wine)}
+.stock-login input{width:100%;min-height:44px;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font:inherit;background:white}
+.stock-login .button{margin-top:6px}
+.stock-message{min-height:20px;color:var(--wine);font-size:12px}
+.stock-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.stock-actions .button{white-space:nowrap}
+.button-secondary{border:1px solid var(--wine);background:transparent;color:var(--wine)}
+[hidden]{display:none!important}

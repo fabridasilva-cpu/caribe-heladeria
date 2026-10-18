@@ -1,7 +1,8 @@
-(() => {
+ (async () => {
   const products = window.CARIBE_PRODUCTS || [];
   const sauces = window.CARIBE_SAUCES || [];
   const inventory = window.CARIBE_STOCK;
+  await inventory.ready;
   const grid = document.getElementById('product-grid');
   const flavorPicker = document.getElementById('flavor-picker');
   const treatPicker = document.getElementById('treat-picker');
@@ -17,6 +18,17 @@
   const selectedSauces = new Set();
   let activeFilter = 'helados';
   const escapeHTML = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const inventoryStatus = document.getElementById('inventory-status');
+  function updateInventoryStatus() {
+    if (!inventoryStatus || !inventory.isConfigured()) return;
+    inventoryStatus.hidden = inventory.isConnected();
+    inventoryStatus.textContent = inventory.isConnected()
+      ? ''
+      : 'No pudimos actualizar el stock en este momento. Confirmaremos la disponibilidad por WhatsApp.';
+  }
+  updateInventoryStatus();
+  window.addEventListener('caribe-stock-changed', updateInventoryStatus);
+  window.addEventListener('caribe-stock-error', updateInventoryStatus);
   const available = p => inventory.isAvailable('products', p.name);
   const sizeInput = () => document.querySelector('[name="size"]:checked');
   const maxFlavors = () => sizeInput().value === '1 kg' ? 4 : 3;
