@@ -1,4 +1,5 @@
-/* Menú visual de Caribe. Los precios deben cargarse desde la lista vigente antes de publicar. */
+/* Menú y precios vigentes informados por Caribe. */
+window.CARIBE_PRICES = { iceCream: {'1/4 kg':6000,'1/2 kg':10000,'1 kg':18000}, sauces:0 };
 window.CARIBE_PRODUCTS = [
   {name:'Almendrado',image:'almendrado.jpg',group:'helados',tag:'Clásico'},
   {name:'Banana split',image:'banana%20split.jpg',group:'helados'},
@@ -23,18 +24,18 @@ window.CARIBE_PRODUCTS = [
   {name:'Sambayón',image:'sambayon.jpg',group:'helados'},
   {name:'Tramontana',image:'tramontana.jpg',group:'helados',tag:'Favorito'},
   {name:'Vainilla',image:'vainilla.jpg',group:'helados'},
-  {name:'Cucuruchos dulces',image:'cucuruchos%20dulces.jpg',group:'tentaciones',orderType:'addon'},
-  {name:'Cucuruchos de pasta',image:'cucuruchos%20de%20pasta.jpg',group:'tentaciones',orderType:'addon'},
-  {name:'Tacita de pasta',image:'tacita%20de%20pasta.jpg',group:'tentaciones',orderType:'addon'},
+  {name:'Cucuruchos dulces',image:'cucuruchos%20dulces.jpg',group:'tentaciones',orderType:'addon',price:400},
+  {name:'Cucuruchos de pasta',image:'cucuruchos%20de%20pasta.jpg',group:'tentaciones',orderType:'addon',price:300},
+  {name:'Tacita de pasta',image:'tacita%20de%20pasta.jpg',group:'tentaciones',orderType:'addon',price:300},
   {name:'Palitos de agua',image:'palitos%20de%20agua.jpg',group:'tentaciones',orderType:'standalone',presentations:[{value:'unidad',label:'Unidad'},{value:'bolsa',label:'Bolsa (40 unidades)'}]},
   {name:'Palitos de crema',image:'palitos%20de%20crema.jpg',group:'tentaciones',orderType:'standalone',presentations:[{value:'unidad',label:'Unidad'},{value:'bolsa',label:'Bolsa (20 unidades)'}]},
   {name:'Palito bombón',image:'palito%20bombon.jpg',group:'tentaciones',orderType:'standalone',presentations:[{value:'unidad',label:'Unidad'},{value:'bolsa',label:'Bolsa (20 unidades)'}]},
-  {name:'Chipa',image:'chipas.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad'},{value:'media-docena',label:'½ docena (6 unidades)'},{value:'docena',label:'Docena (12 unidades)'}]},
-  {name:'Medialunas',image:'medialunas.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad'},{value:'media-docena',label:'½ docena (6 unidades)'},{value:'docena',label:'Docena (12 unidades)'}]},
-  {name:'Rosquitas',image:'rosquitas.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad'},{value:'media-docena',label:'½ docena (6 unidades)'},{value:'docena',label:'Docena (12 unidades)'}]},
-  {name:'Sándwich panini',image:'sandwich%20panini.jpg',group:'comestibles'},
-  {name:'Tostado de jamón y queso',image:'tostados%20de%20jamon%20y%20queso.jpg',group:'comestibles'},
-  {name:'Churros con dulce de leche',image:'churros%20con%20dulce%20de%20leche.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad'},{value:'media-docena',label:'½ docena (6 unidades)'},{value:'docena',label:'Docena (12 unidades)'}]}
+  {name:'Chipa',image:'chipas.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad',price:800},{value:'media-docena',label:'½ docena (6 unidades)',price:4500},{value:'docena',label:'Docena (12 unidades)',price:9000}]},
+  {name:'Medialunas',image:'medialunas.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad',price:800},{value:'media-docena',label:'½ docena (6 unidades)',price:4500},{value:'docena',label:'Docena (12 unidades)',price:9000}]},
+  {name:'Rosquitas',image:'rosquitas.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad',price:600},{value:'media-docena',label:'½ docena (6 unidades)',price:3500},{value:'docena',label:'Docena (12 unidades)',price:7000}]},
+  {name:'Sándwich panini',image:'sandwich%20panini.jpg',group:'comestibles',price:4000},
+  {name:'Tostado de jamón y queso',image:'tostados%20de%20jamon%20y%20queso.jpg',group:'comestibles',price:5000},
+  {name:'Churros con dulce de leche',image:'churros%20con%20dulce%20de%20leche.jpg',group:'comestibles',presentations:[{value:'unidad',label:'Unidad',price:600},{value:'media-docena',label:'½ docena (6 unidades)',price:3500},{value:'docena',label:'Docena (12 unidades)',price:7000}]}
 ];
 
 window.CARIBE_SAUCES = ['Frutilla','Chocolate','Dulce de leche','Caramelo','Blue berry'];
