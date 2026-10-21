@@ -19,11 +19,11 @@
   const selectedSauces = new Set();
   const addressInput = document.getElementById('address');
   function updateAddressRequirement() {
-    const deliverySelected = document.querySelector('[name="delivery"]:checked').value.startsWith('Envío');
+    const deliverySelected = document.querySelector('[name="delivery"]:checked').value.startsWith('Env�o');
     addressInput.required = deliverySelected;
     addressInput.setAttribute('aria-required', String(deliverySelected));
-    addressInput.setAttribute('aria-label', deliverySelected ? 'Dirección de envío obligatoria' : 'Dirección de envío opcional');
-    addressInput.placeholder = deliverySelected ? 'Dirección para el envío (obligatoria)' : 'Dirección para el envío (opcional)';
+    addressInput.setAttribute('aria-label', deliverySelected ? 'Direcci�n de env�o obligatoria' : 'Direcci�n de env�o opcional');
+    addressInput.placeholder = deliverySelected ? 'Direcci�n para el env�o (obligatoria)' : 'Direcci�n para el env�o (opcional)';
     if (!deliverySelected) addressInput.setCustomValidity('');
   }
   document.querySelectorAll('[name="delivery"]').forEach(input=>input.addEventListener('change',updateAddressRequirement));
@@ -31,7 +31,7 @@
   updateAddressRequirement();
   const priceNote = document.querySelector('.price-note p');
   const priceLink = document.querySelector('.price-note a');
-  if(priceNote) priceNote.innerHTML='<strong>Precios vigentes.</strong> Armá tu pedido y vas a ver el total estimado antes de abrir WhatsApp. Los palitos se confirman por mensaje.';
+  if(priceNote) priceNote.innerHTML='<strong>Precios vigentes.</strong> Arm� tu pedido y vas a ver el total estimado antes de abrir WhatsApp. Los palitos se confirman por mensaje.';
   if(priceLink){priceLink.href='#pedido';priceLink.textContent='Ver precios y armar pedido';}
   let activeFilter = 'helados';
   const escapeHTML = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -75,10 +75,10 @@
     const visible = products.filter(p => p.group === activeFilter && p.name.toLocaleLowerCase('es').includes(q));
     grid.innerHTML = visible.map(p => {
       const inStock = available(p);
-      const kind = p.group === 'helados' ? 'Gusto de helado' : p.group === 'tentaciones' ? (p.orderType === 'addon' ? 'Para acompañar el helado' : 'Tentación') : 'Comestible';
+      const kind = p.group === 'helados' ? 'Gusto de helado' : p.group === 'tentaciones' ? (p.orderType === 'addon' ? 'Para acompa�ar el helado' : 'Tentaci�n') : 'Comestible';
       const alt = p.group === 'helados' ? `Helado artesanal de ${escapeHTML(p.name)}` : `${kind}: ${escapeHTML(p.name)}`;
       const priceLabel = productPriceLabel(p);
-      return `<article class="product-card ${inStock ? '' : 'out-of-stock'}"><div class="product-picture"><img src="assets/${p.image}" alt="${alt}" loading="lazy">${p.tag && inStock ? `<span class="product-tag">${escapeHTML(p.tag)}</span>` : ''}${inStock ? '' : '<span class="stock-badge">Sin stock</span>'}</div><div class="product-info"><div><h3>${escapeHTML(p.name)}</h3><small>${kind}</small></div><button type="button" class="quick-add" data-add="${escapeHTML(p.name)}" aria-label="Agregar ${escapeHTML(p.name)}" ${inStock ? '' : 'disabled'}>${inStock ? '+' : '–'}</button></div></article>`;
+      return `<article class="product-card ${inStock ? '' : 'out-of-stock'}"><div class="product-picture"><img src="assets/${p.image}" alt="${alt}" loading="lazy">${p.tag && inStock ? `<span class="product-tag">${escapeHTML(p.tag)}</span>` : ''}${inStock ? '' : '<span class="stock-badge">Sin stock</span>'}</div><div class="product-info"><div><h3>${escapeHTML(p.name)}</h3><small>${kind}</small></div><button type="button" class="quick-add" data-add="${escapeHTML(p.name)}" aria-label="Agregar ${escapeHTML(p.name)}" ${inStock ? '' : 'disabled'}>${inStock ? '+' : '-'}</button></div></article>`;
     }).join('');
     grid.querySelectorAll('.quick-add').forEach(button=>{
       const product=products.find(item=>item.name===button.dataset.add);
@@ -88,7 +88,7 @@
     document.querySelectorAll('[name="size"]').forEach(input=>{
       const price=prices.iceCream[input.value];
       const note=input.parentElement.querySelector('small');
-      if(note) note.textContent=`${note.textContent.split(' · ')[0]} · ${money(price)}`;
+      if(note) note.textContent=`${note.textContent.split(' � ')[0]} � ${money(price)}`;
     });
     document.getElementById('empty-state').hidden = visible.length > 0;
     grid.querySelectorAll('[data-add]').forEach(btn => btn.addEventListener('click', () => {
@@ -110,10 +110,10 @@
   }
 
   function refreshPickers() {
-    fillPicker(flavorPicker,'helados','Elegí un sabor para agregar…');
-    fillPicker(treatPicker,'tentaciones','Elegí una tentación…',p=>p.orderType==='standalone');
-    fillPicker(addonPicker,'tentaciones','Elegí un agregado…',p=>p.orderType==='addon');
-    fillPicker(ediblePicker,'comestibles','Elegí un comestible…');
+    fillPicker(flavorPicker,'helados','Eleg� un sabor para agregar.');
+    fillPicker(treatPicker,'tentaciones','Eleg� una tentaci�n.',p=>p.orderType==='standalone');
+    fillPicker(addonPicker,'tentaciones','Eleg� un agregado.',p=>p.orderType==='addon');
+    fillPicker(ediblePicker,'comestibles','Eleg� un comestible.');
     syncPresentation(treatPicker,treatPresentation);
     syncPresentation(ediblePicker,ediblePresentation);
     addonPicker.disabled = selected.length === 0;
@@ -142,7 +142,7 @@
       const name = isAddon ? itemKey : value.name;
       const qty = isAddon ? value : value.quantity;
       const detail = isAddon ? '' : `<small>${escapeHTML(value.presentation)}</small>`;
-      return `<span class="flavor-chip edible-chip">${escapeHTML(name)} ${detail} <button type="button" data-map="${key}" data-item-key="${escapeHTML(itemKey)}" data-delta="-1" aria-label="Quitar uno">−</button><b>${qty}</b><button type="button" data-map="${key}" data-item-key="${escapeHTML(itemKey)}" data-delta="1" aria-label="Agregar uno">+</button></span>`;
+      return `<span class="flavor-chip edible-chip">${escapeHTML(name)} ${detail} <button type="button" data-map="${key}" data-item-key="${escapeHTML(itemKey)}" data-delta="-1" aria-label="Quitar uno">-</button><b>${qty}</b><button type="button" data-map="${key}" data-item-key="${escapeHTML(itemKey)}" data-delta="1" aria-label="Agregar uno">+</button></span>`;
     }).join('');
     wrap.querySelectorAll('[data-item-key]').forEach(b => b.addEventListener('click', () => {
       if (b.dataset.map === 'addons') addQuantity(addons,b.dataset.itemKey,Number(b.dataset.delta));
@@ -153,38 +153,38 @@
   function drawSelected() {
     const wrap = document.getElementById('selected-flavors');
     const limit = maxFlavors();
-    document.getElementById('flavor-limit').textContent = `(máximo ${limit}; elegidos ${selected.length})`;
+    document.getElementById('flavor-limit').textContent = `(m�ximo ${limit}; elegidos ${selected.length})`;
     document.querySelectorAll('[name="size"]').forEach(input => input.closest('.size-option').classList.toggle('selected', input.checked));
-    if (!selected.length) wrap.innerHTML = '<span class="flavor-empty">Tus gustos aparecen acá.</span>';
-    else wrap.innerHTML = selected.map((f,i) => `<span class="flavor-chip">${escapeHTML(f)} <button type="button" data-remove-flavor="${i}" aria-label="Quitar ${escapeHTML(f)}">×</button></span>`).join('');
+    if (!selected.length) wrap.innerHTML = '<span class="flavor-empty">Tus gustos aparecen ac�.</span>';
+    else wrap.innerHTML = selected.map((f,i) => `<span class="flavor-chip">${escapeHTML(f)} <button type="button" data-remove-flavor="${i}" aria-label="Quitar ${escapeHTML(f)}">�</button></span>`).join('');
     wrap.querySelectorAll('[data-remove-flavor]').forEach(b => b.addEventListener('click', () => {
       selected.splice(Number(b.dataset.removeFlavor),1);
       if (!selected.length) { selectedSauces.clear(); addons.clear(); }
       feedback(''); drawSelected();
     }));
-    drawMap(document.getElementById('selected-treats'),treats,'Tus tentaciones aparecen acá.','treats');
-    drawMap(document.getElementById('selected-addons'),addons,'Podés agregar cucuruchos o tacita.','addons');
-    drawMap(document.getElementById('selected-edibles'),edibles,'Tus comestibles aparecen acá.','edibles');
+    drawMap(document.getElementById('selected-treats'),treats,'Tus tentaciones aparecen ac�.','treats');
+    drawMap(document.getElementById('selected-addons'),addons,'Pod�s agregar cucuruchos o tacita.','addons');
+    drawMap(document.getElementById('selected-edibles'),edibles,'Tus comestibles aparecen ac�.','edibles');
     refreshPickers();
     drawSauces();
 
     const rows = [];
     if (selected.length) {
-      rows.push(`<li class="summary-group">Helado · ${escapeHTML(sizeInput().value)}</li>`);
-      selected.forEach(f => rows.push(`<li>• ${escapeHTML(f)}</li>`));
+      rows.push(`<li class="summary-group">Helado � ${escapeHTML(sizeInput().value)}</li>`);
+      selected.forEach(f => rows.push(`<li> ${escapeHTML(f)}</li>`));
       if (selectedSauces.size) rows.push(`<li class="summary-addition">Salsas: ${[...selectedSauces].map(escapeHTML).join(', ')}</li>`);
-      if (addons.size) rows.push(`<li class="summary-addition">Para el helado: ${[...addons].map(([name,qty])=>`${qty} × ${escapeHTML(name)}`).join(', ')}</li>`);
+      if (addons.size) rows.push(`<li class="summary-addition">Para el helado: ${[...addons].map(([name,qty])=>`${qty} � ${escapeHTML(name)}`).join(', ')}</li>`);
     }
     if (addons.size) rows.push(`<li class="summary-addition">Precio de cucuruchos y tacitas: $${addonTotal().toLocaleString('es-AR')}</li>`);
     if (treats.size) {
       rows.push('<li class="summary-group">Tentaciones</li>');
-      for (const [,item] of treats) rows.push(`<li>• ${escapeHTML(formatLine(item))}</li>`);
+      for (const [,item] of treats) rows.push(`<li> ${escapeHTML(formatLine(item))}</li>`);
     }
     if (edibles.size) {
       rows.push('<li class="summary-group">Comestibles</li>');
-      for (const [,item] of edibles) rows.push(`<li>• ${escapeHTML(formatLine(item))}</li>`);
+      for (const [,item] of edibles) rows.push(`<li> ${escapeHTML(formatLine(item))}</li>`);
     }
-    document.getElementById('summary-content').innerHTML = rows.length ? `<ul class="summary-list">${rows.join('')}</ul>` : '<p class="summary-empty">Todavía no agregaste productos.<br>Elegí helados, tentaciones o comestibles.</p>';
+    document.getElementById('summary-content').innerHTML = rows.length ? `<ul class="summary-list">${rows.join('')}</ul>` : '<p class="summary-empty">Todav�a no agregaste productos.<br>Eleg� helados, tentaciones o comestibles.</p>';
     document.getElementById('whatsapp-order').disabled = rows.length === 0;
     const unpricedItems = [...treats.values(),...edibles.values()].filter(item=>item.unitPrice==null);
     const knownTotal = (selected.length ? (prices.iceCream[sizeInput().value] || 0) : 0)
@@ -192,26 +192,26 @@
       + [...treats.values(),...edibles.values()].reduce((sum,item)=>sum+(item.unitPrice||0)*item.quantity,0);
     document.querySelector('.summary-price span').textContent = unpricedItems.length ? 'Subtotal conocido' : 'Total estimado';
     document.querySelector('.summary-price strong').textContent = '$' + knownTotal.toLocaleString('es-AR');
-    document.querySelector('.summary-price small').textContent = unpricedItems.length ? 'Hay productos sin precio publicado; se confirman por WhatsApp. Envío según la zona.' : 'Salsas sin costo. El envío se calcula según la zona.';
+    document.querySelector('.summary-price small').textContent = unpricedItems.length ? 'Hay productos sin precio publicado; se confirman por WhatsApp. Env�o seg�n la zona.' : 'Salsas sin costo. El env�o se calcula seg�n la zona.';
   }
 
   function addFlavor(name) {
     const p = products.find(x => x.name === name);
-    if (!p || !available(p)) return feedback(`${name} no está disponible en este momento.`);
-    if (selected.includes(name)) return feedback(`${name} ya está en tu selección.`);
-    if (selected.length >= maxFlavors()) return feedback(`Para ${sizeInput().value} podés elegir hasta ${maxFlavors()} sabores.`);
+    if (!p || !available(p)) return feedback(`${name} no est� disponible en este momento.`);
+    if (selected.includes(name)) return feedback(`${name} ya est� en tu selecci�n.`);
+    if (selected.length >= maxFlavors()) return feedback(`Para ${sizeInput().value} pod�s elegir hasta ${maxFlavors()} sabores.`);
     selected.push(name); feedback(''); drawSelected();
   }
   function addQuantity(map,name,delta=1) {
     const p = products.find(x => x.name === name);
-    if (!p || !available(p)) return feedback(`${name} no está disponible en este momento.`);
+    if (!p || !available(p)) return feedback(`${name} no est� disponible en este momento.`);
     const next = (map.get(name)||0)+delta;
     if (next <= 0) map.delete(name); else map.set(name,next);
     feedback(''); drawSelected();
   }
   function addLineItem(map,name,presentationValue,delta=1) {
     const product=products.find(p=>p.name===name);
-    if(!product||!available(product)) return feedback(`${name} no está disponible en este momento.`);
+    if(!product||!available(product)) return feedback(`${name} no est� disponible en este momento.`);
     const presentation=getPresentations(product).find(x=>x.value===presentationValue)||getPresentations(product)[0];
     const key=`${name}::${presentation.value}`;
     const next=(map.get(key)?.quantity||0)+delta;
@@ -227,10 +227,10 @@
   }
   function formatLine(item) {
     if(item.presentation==='Unidad') return `${item.quantity} ${item.quantity===1?'unidad':'unidades'} de ${item.name}`;
-    return `${item.quantity} × ${item.presentation.toLocaleLowerCase('es')} de ${item.name}`;
+    return `${item.quantity} � ${item.presentation.toLocaleLowerCase('es')} de ${item.name}`;
   }
   function addAddon(name) {
-    if (!selected.length) return feedback('Elegí un helado antes de agregar un cucurucho o una tacita.');
+    if (!selected.length) return feedback('Eleg� un helado antes de agregar un cucurucho o una tacita.');
     addQuantity(addons,name,1);
   }
 
@@ -248,14 +248,14 @@
   document.getElementById('add-edible').addEventListener('click', () => { addLineItem(edibles,ediblePicker.value,ediblePresentation.value); ediblePicker.value=''; syncPresentation(ediblePicker,ediblePresentation); });
   ediblePicker.addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();addLineItem(edibles,ediblePicker.value,ediblePresentation.value);ediblePicker.value='';syncPresentation(ediblePicker,ediblePresentation);} });
   document.querySelectorAll('[name="size"]').forEach(input => input.addEventListener('change', () => {
-    if (selected.length > maxFlavors()) { selected.splice(maxFlavors()); feedback(`Se ajustó la selección al máximo de ${maxFlavors()} sabores para este tamaño.`); }
+    if (selected.length > maxFlavors()) { selected.splice(maxFlavors()); feedback(`Se ajust� la selecci�n al m�ximo de ${maxFlavors()} sabores para este tama�o.`); }
     drawSelected();
   }));
   document.getElementById('whatsapp-order').addEventListener('click', () => {
     if (!selected.length && !treats.size && !edibles.size) return;
     const selectedDelivery = document.querySelector('[name="delivery"]:checked').value;
-    if (selectedDelivery.startsWith('Envío') && !addressInput.value.trim()) {
-      addressInput.setCustomValidity('Ingresá la dirección para coordinar el envío.');
+    if (selectedDelivery.startsWith('Env�o') && !addressInput.value.trim()) {
+      addressInput.setCustomValidity('Ingres� la direcci�n para coordinar el env�o.');
       addressInput.reportValidity();
       addressInput.focus();
       return;
@@ -267,34 +267,45 @@
     const estimatedTotal = (selected.length ? (prices.iceCream[sizeInput().value] || 0) : 0)
       + addonTotal()
       + [...treats.values(),...edibles.values()].reduce((sum,item)=>sum+(item.unitPrice||0)*item.quantity,0);
-    lines.push('', `${unpriced ? 'Subtotal de productos con precio' : 'Total estimado'}: $${estimatedTotal.toLocaleString('es-AR')}`, 'Salsas: sin costo. El envío se calcula según la zona.');
+    lines.push('', `${unpriced ? 'Subtotal de productos con precio' : 'Total estimado'}: $${estimatedTotal.toLocaleString('es-AR')}`, 'Salsas: sin costo. El env�o se calcula seg�n la zona.');
     const delivery = document.querySelector('[name="delivery"]:checked').value;
+    const payment = document.querySelector('[name="payment"]:checked').value;
     const address = document.getElementById('address').value.trim();
     const notes = document.getElementById('notes').value.trim();
-    lines.unshift('¡Hola, Caribe! Quiero hacer este pedido:');
+    lines.unshift('�Hola, Caribe! Quiero hacer este pedido:');
     if (selected.length) {
-      lines.push('',`• Helado de ${sizeInput().value}`,`• Gustos: ${selected.join(', ')}`);
-      if (selectedSauces.size) lines.push(`• Salsas: ${[...selectedSauces].join(', ')}`);
-      if (addons.size) lines.push(`• Para acompañar el helado: ${[...addons].map(([name,qty])=>`${qty} × ${name}`).join(', ')}`);
+      lines.push('',` Helado de ${sizeInput().value}`,` Gustos: ${selected.join(', ')}`);
+      if (selectedSauces.size) lines.push(` Salsas: ${[...selectedSauces].join(', ')}`);
+      if (addons.size) lines.push(` Para acompa�ar el helado: ${[...addons].map(([name,qty])=>`${qty} � ${name}`).join(', ')}`);
     }
-    if (treats.size) lines.push('', '• Tentaciones:', ...[...treats.values()].map(item => `  - ${formatLine(item)}`));
-    if (edibles.size) lines.push('', '• Comestibles:', ...[...edibles.values()].map(item => `  - ${formatLine(item)}`));
-    lines.push('',`• ${delivery}`);
-    if (delivery.startsWith('Envío') && address) lines.push(`• Dirección: ${address}`);
-    if (notes) lines.push(`• Detalle: ${notes}`);
-    lines.push('', '¿Me confirman disponibilidad y precio?');
-    const message = ['\u00a1Hola, Caribe! Quiero hacer este pedido:', ''];
+    if (treats.size) lines.push('', ' Tentaciones:', ...[...treats.values()].map(item => `  - ${formatLine(item)}`));
+    if (edibles.size) lines.push('', ' Comestibles:', ...[...edibles.values()].map(item => `  - ${formatLine(item)}`));
+    lines.push('',` ${delivery}`);
+    if (delivery.startsWith('Env�o') && address) lines.push(` Direcci�n: ${address}`);
+    if (notes) lines.push(` Detalle: ${notes}`);
+    lines.push('', '�Me confirman disponibilidad y precio?');
+    const message = ['�Hola! Quisiera hacer este pedido en Caribe:', ''];
     if (selected.length) {
-      message.push(`Helado ${sizeInput().value}: ${selected.join(', ')}`);
-      if (selectedSauces.size) message.push(`Salsas: ${[...selectedSauces].join(', ')}`);
+      message.push(`Helado (${sizeInput().value}): ${selected.join(', ')}`);
+      if (selectedSauces.size) message.push(`Salsa: ${[...selectedSauces].join(', ')}`);
       if (addons.size) message.push(`Cucuruchos y tacitas: ${[...addons].map(([name,qty])=>`${qty} x ${name}`).join(', ')}`);
     }
     if (treats.size) message.push('', 'Tentaciones:', ...[...treats.values()].map(item=>`- ${formatLine(item)}`));
     if (edibles.size) message.push('', 'Comestibles:', ...[...edibles.values()].map(item=>`- ${formatLine(item)}`));
     message.push('', `Total del pedido: $${estimatedTotal.toLocaleString('es-AR')}${unpriced ? ' (hay productos con precio a confirmar)' : ''}`);
-    message.push('', delivery.startsWith('Env\u00edo') ? 'Entrega a domicilio' : 'Retiro en el local');
+    message.push('', delivery.startsWith('Env\u00edo') ? 'Modalidad: Entrega a domicilio' : 'Modalidad: Retiro en el local');
     if (delivery.startsWith('Env\u00edo') && address) message.push(`Direcci\u00f3n: ${address}`);
+    message.push(`Forma de pago: ${payment}`);
     if (notes) message.push(`Detalle: ${notes}`);
+    if (delivery.startsWith('Env\u00edo')) {
+      message.push('', payment === 'Transferencia'
+        ? '�Me indican cu�nto cuesta el env�o y cu�l es el alias para transferir?'
+        : '�Me indican cu�nto cuesta el env�o? Abono en efectivo al recibir.');
+    } else if (payment === 'Transferencia') {
+      message.push('', '�Me indican cu�l es el alias para transferir?');
+    } else {
+      message.push('', 'Abono en efectivo al retirar.');
+    }
     window.open(`https://wa.me/543775415447?text=${encodeURIComponent(message.join('\n'))}`, '_blank', 'noopener,noreferrer');
   });
 
@@ -307,7 +318,8 @@
     feedback(''); refreshPickers(); drawProducts(); drawSelected();
   });
   const toggle=document.querySelector('.menu-toggle');
-  toggle.addEventListener('click',()=>{const nav=document.querySelector('.main-nav');const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'×':'☰';});
-  document.querySelectorAll('.main-nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('.main-nav').classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰';}));
+  toggle.addEventListener('click',()=>{const nav=document.querySelector('.main-nav');const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'�':'?';});
+  document.querySelectorAll('.main-nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('.main-nav').classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='?';}));
   document.getElementById('year').textContent=new Date().getFullYear();
 })();
+
