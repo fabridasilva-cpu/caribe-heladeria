@@ -283,7 +283,19 @@
     if (delivery.startsWith('Envío') && address) lines.push(`• Dirección: ${address}`);
     if (notes) lines.push(`• Detalle: ${notes}`);
     lines.push('', '¿Me confirman disponibilidad y precio?');
-    window.open(`https://wa.me/543775415447?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener,noreferrer');
+    const message = ['\u00a1Hola, Caribe! Quiero hacer este pedido:', ''];
+    if (selected.length) {
+      message.push(`Helado ${sizeInput().value}: ${selected.join(', ')}`);
+      if (selectedSauces.size) message.push(`Salsas: ${[...selectedSauces].join(', ')}`);
+      if (addons.size) message.push(`Cucuruchos y tacitas: ${[...addons].map(([name,qty])=>`${qty} x ${name}`).join(', ')}`);
+    }
+    if (treats.size) message.push('', 'Tentaciones:', ...[...treats.values()].map(item=>`- ${formatLine(item)}`));
+    if (edibles.size) message.push('', 'Comestibles:', ...[...edibles.values()].map(item=>`- ${formatLine(item)}`));
+    message.push('', `Total del pedido: $${estimatedTotal.toLocaleString('es-AR')}${unpriced ? ' (hay productos con precio a confirmar)' : ''}`);
+    message.push('', delivery.startsWith('Env\u00edo') ? 'Entrega a domicilio' : 'Retiro en el local');
+    if (delivery.startsWith('Env\u00edo') && address) message.push(`Direcci\u00f3n: ${address}`);
+    if (notes) message.push(`Detalle: ${notes}`);
+    window.open(`https://wa.me/543775415447?text=${encodeURIComponent(message.join('\n'))}`, '_blank', 'noopener,noreferrer');
   });
 
   window.addEventListener('caribe-stock-changed', () => {
